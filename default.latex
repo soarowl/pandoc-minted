@@ -1,0 +1,48 @@
+\documentclass[cn]{elegantbook}
+
+\usepackage[newfloat]{minted}
+\setminted{autogobble,breaklines,fontsize=\footnotesize{},linenos}
+
+\newcommand\restorespace{
+    \xeCJKsetup{CJKecglue = { }, xCJKecglue = true}
+}
+
+\newcommand\removespace{
+    \xeCJKsetup{CJKecglue = {}, xCJKecglue = true}
+}
+
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+% Resize figures that are too wide for the page.
+\let\oldincludegraphics\includegraphics
+\renewcommand\includegraphics[2][]{%
+  \oldincludegraphics[#1,max width=1\paperwidth,max height=1\paperheight,keepaspectratio]{#2}
+}
+
+\SetupFloatingEnvironment{listing}{listname=程序列表,name=程序,placement=htp}
+
+$if(author)$
+\author{$for(author)$$author$$sep$\\$endfor$}
+$endif$
+$if(cover)$
+\cover{$cover$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+$if(title)$
+\title{$title$}
+$endif$
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\tableofcontents
+
+\mainmatter{}
+
+$body$
+
+\end{document}
